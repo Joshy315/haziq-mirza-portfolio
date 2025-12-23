@@ -1,0 +1,18 @@
+# System files
+.DS_Store
+Thumbs.db
+nul
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+*.bak
+*~
+
+# Claude files (optional - remove if you want to track)
+.claude/
