@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Haziq Mirza | Network Engineer & Developer</title>
+    <title>Haziq Mirza | IP Network Engineer & Developer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #00ff88;
-            --secondary: #0066ff;
-            --accent: #ff0080;
-            --dark: #0a0e1a;
-            --darker: #050810;
-            --light: #e0e7ff;
-            --glow: rgba(0, 255, 136, 0.3);
+            --primary: #00f0ff;
+            --secondary: #7000ff;
+            --accent: #ff0055;
+            --dark: #070913;
+            --darker: #030408;
+            --card-bg: rgba(15, 23, 42, 0.6);
+            --light: #f1f5f9;
+            --glow-primary: rgba(0, 240, 255, 0.4);
+            --glow-secondary: rgba(112, 0, 255, 0.4);
+            --border-color: rgba(0, 240, 255, 0.25);
         }
 
         * {
@@ -40,17 +43,17 @@
             width: 100%;
             height: 100%;
             z-index: 0;
-            opacity: 0.15;
+            opacity: 0.12;
             background-image: 
                 linear-gradient(var(--primary) 1px, transparent 1px),
                 linear-gradient(90deg, var(--primary) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: gridMove 20s linear infinite;
+            background-size: 40px 40px;
+            animation: gridMove 25s linear infinite;
         }
 
         @keyframes gridMove {
             0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
+            100% { transform: translate(40px, 40px); }
         }
 
         /* Floating Particles */
@@ -72,6 +75,7 @@
             border-radius: 50%;
             animation: float 15s infinite ease-in-out;
             opacity: 0.6;
+            box-shadow: 0 0 8px var(--primary);
         }
 
         @keyframes float {
@@ -85,32 +89,27 @@
         .container {
             position: relative;
             z-index: 2;
-            max-width: 1400px;
+            max-width: 1300px;
             margin: 0 auto;
             padding: 0 2rem;
         }
 
         /* Header Navigation */
         header {
-            padding: 2rem 0;
+            padding: 1.5rem 0;
             position: sticky;
             top: 0;
-            backdrop-filter: blur(10px);
-            background: rgba(10, 14, 26, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            background: rgba(3, 4, 8, 0.75);
             z-index: 100;
-            border-bottom: 1px solid rgba(0, 255, 136, 0.2);
+            border-bottom: 1px solid var(--border-color);
             animation: slideDown 0.8s ease-out;
         }
 
         @keyframes slideDown {
-            from {
-                transform: translateY(-100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         nav {
@@ -121,23 +120,17 @@
 
         .logo {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 900;
             color: var(--primary);
             text-transform: uppercase;
-            letter-spacing: 3px;
-            text-shadow: 0 0 20px var(--glow);
-            animation: glowPulse 3s ease-in-out infinite;
-        }
-
-        @keyframes glowPulse {
-            0%, 100% { text-shadow: 0 0 20px var(--glow), 0 0 40px var(--glow); }
-            50% { text-shadow: 0 0 30px var(--glow), 0 0 60px var(--glow); }
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px var(--glow-primary);
         }
 
         .nav-links {
             display: flex;
-            gap: 3rem;
+            gap: 2.5rem;
             list-style: none;
         }
 
@@ -148,18 +141,18 @@
             position: relative;
             transition: color 0.3s;
             text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
         }
 
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: -6px;
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--primary);
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
             transition: width 0.3s ease;
         }
 
@@ -173,7 +166,7 @@
 
         /* Hero Section */
         .hero {
-            min-height: 90vh;
+            min-height: 88vh;
             display: flex;
             align-items: center;
             position: relative;
@@ -185,214 +178,171 @@
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .hero-label {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--primary);
             text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s ease-out 0.5s backwards;
+            letter-spacing: 4px;
+            margin-bottom: 1.2rem;
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: rgba(0, 240, 255, 0.08);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
         }
 
         .hero h1 {
             font-family: 'Orbitron', sans-serif;
-            font-size: clamp(3rem, 8vw, 7rem);
+            font-size: clamp(3rem, 7vw, 6rem);
             font-weight: 900;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, #ffffff, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
             line-height: 1.1;
-            animation: fadeInUp 1s ease-out 0.7s backwards;
         }
 
         .hero h2 {
-            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-size: clamp(1.2rem, 2.5vw, 2rem);
             color: var(--light);
             font-weight: 400;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             opacity: 0.9;
-            animation: fadeInUp 1s ease-out 0.9s backwards;
         }
 
         .hero-description {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             color: var(--light);
             opacity: 0.8;
-            max-width: 600px;
-            margin-bottom: 3rem;
+            max-width: 650px;
+            margin-bottom: 2.5rem;
             line-height: 1.8;
-            animation: fadeInUp 1s ease-out 1.1s backwards;
         }
 
         .cta-buttons {
             display: flex;
             gap: 1.5rem;
-            animation: fadeInUp 1s ease-out 1.3s backwards;
         }
 
         .btn {
-            padding: 1rem 2.5rem;
-            font-size: 1rem;
-            font-weight: 500;
+            padding: 0.9rem 2.2rem;
+            font-size: 0.9rem;
+            font-weight: 600;
             text-decoration: none;
-            border-radius: 50px;
+            border-radius: 6px;
             transition: all 0.3s;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             position: relative;
             overflow: hidden;
             font-family: 'IBM Plex Mono', monospace;
+            display: inline-block;
         }
 
         .btn-primary {
-            background: var(--primary);
-            color: var(--dark);
-            border: 2px solid var(--primary);
-        }
-
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: var(--secondary);
-            transition: width 0.6s, height 0.6s, top 0.6s, left 0.6s;
-            transform: translate(-50%, -50%);
-            z-index: -1;
-        }
-
-        .btn-primary:hover::before {
-            width: 300px;
-            height: 300px;
+            background: linear-gradient(135deg, var(--primary), #00a8ff);
+            color: var(--darker);
+            border: none;
+            box-shadow: 0 0 20px var(--glow-primary);
         }
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 40px var(--glow);
+            box-shadow: 0 0 30px var(--glow-primary);
         }
 
         .btn-secondary {
             background: transparent;
             color: var(--primary);
-            border: 2px solid var(--primary);
+            border: 1px solid var(--primary);
         }
 
         .btn-secondary:hover {
-            background: var(--primary);
-            color: var(--dark);
+            background: rgba(0, 240, 255, 0.1);
             transform: translateY(-3px);
-            box-shadow: 0 10px 40px var(--glow);
+            box-shadow: 0 0 20px var(--glow-primary);
         }
 
         /* Section Styling */
         section {
-            padding: 8rem 0;
+            padding: 7rem 0;
             position: relative;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 5rem;
+            margin-bottom: 4.5rem;
         }
 
         .section-label {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--primary);
             text-transform: uppercase;
             letter-spacing: 3px;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
 
         .section-title {
             font-family: 'Orbitron', sans-serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(2rem, 4vw, 3.2rem);
             font-weight: 900;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--light), var(--primary));
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff, var(--primary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
         .section-subtitle {
-            font-size: 1.2rem;
+            font-size: 1.05rem;
             color: var(--light);
-            opacity: 0.7;
-            max-width: 600px;
+            opacity: 0.75;
+            max-width: 650px;
             margin: 0 auto;
         }
 
         /* Skills Grid */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
-            margin-top: 3rem;
         }
 
         .skill-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(0, 255, 136, 0.2);
-            border-radius: 20px;
-            padding: 2.5rem;
-            transition: all 0.4s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .skill-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.1), transparent);
-            transition: left 0.6s;
-        }
-
-        .skill-card:hover::before {
-            left: 100%;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2.2rem;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            backdrop-filter: blur(10px);
         }
 
         .skill-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-8px);
             border-color: var(--primary);
-            box-shadow: 0 20px 60px rgba(0, 255, 136, 0.2);
-            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.15);
         }
 
         .skill-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            margin-bottom: 1.2rem;
         }
 
         .skill-card h3 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: var(--primary);
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
 
         .skill-card p {
             color: var(--light);
             opacity: 0.8;
-            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
         }
 
         .skill-tags {
@@ -402,11 +352,11 @@
         }
 
         .skill-tag {
-            padding: 0.4rem 1rem;
-            background: rgba(0, 255, 136, 0.1);
-            border: 1px solid rgba(0, 255, 136, 0.3);
-            border-radius: 20px;
-            font-size: 0.85rem;
+            padding: 0.35rem 0.8rem;
+            background: rgba(0, 240, 255, 0.08);
+            border: 1px solid rgba(0, 240, 255, 0.25);
+            border-radius: 4px;
+            font-size: 0.8rem;
             color: var(--primary);
         }
 
@@ -414,84 +364,57 @@
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
+            gap: 2.5rem;
         }
 
         .project-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(0, 255, 136, 0.2);
-            border-radius: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
             overflow: hidden;
-            transition: all 0.4s;
-            position: relative;
-        }
-
-        .project-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 102, 255, 0.1));
-            opacity: 0;
-            transition: opacity 0.4s;
-        }
-
-        .project-card:hover::after {
-            opacity: 1;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(10px);
         }
 
         .project-card:hover {
-            transform: translateY(-10px) scale(1.02);
+            transform: translateY(-8px);
             border-color: var(--primary);
-            box-shadow: 0 30px 80px rgba(0, 255, 136, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 240, 255, 0.2);
         }
 
         .project-image {
             width: 100%;
-            height: 250px;
-            background: linear-gradient(135deg, rgba(0, 255, 136, 0.2), rgba(0, 102, 255, 0.2));
+            height: 180px;
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.15), rgba(112, 0, 255, 0.15));
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-image::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(0, 255, 136, 0.3) 0%, transparent 70%);
-            animation: rotate 10s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+            font-size: 3.5rem;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .project-content {
             padding: 2rem;
-            position: relative;
-            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
         }
 
         .project-card h3 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 0.8rem;
         }
 
         .project-card p {
             color: var(--light);
             opacity: 0.8;
+            font-size: 0.95rem;
             margin-bottom: 1.5rem;
+            flex-grow: 1;
         }
 
         .project-tech {
@@ -502,12 +425,12 @@
         }
 
         .tech-tag {
-            padding: 0.3rem 0.8rem;
-            background: rgba(0, 102, 255, 0.2);
-            border: 1px solid rgba(0, 102, 255, 0.4);
-            border-radius: 15px;
-            font-size: 0.8rem;
-            color: var(--secondary);
+            padding: 0.25rem 0.7rem;
+            background: rgba(112, 0, 255, 0.2);
+            border: 1px solid rgba(112, 0, 255, 0.4);
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: #b57cff;
         }
 
         .project-link {
@@ -516,19 +439,20 @@
             gap: 0.5rem;
             color: var(--primary);
             text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: gap 0.3s;
         }
 
         .project-link:hover {
-            gap: 1rem;
+            gap: 0.8rem;
         }
 
         /* Experience Timeline */
         .timeline {
             position: relative;
-            max-width: 900px;
-            margin: 3rem auto;
+            max-width: 950px;
+            margin: 0 auto;
         }
 
         .timeline::before {
@@ -538,93 +462,84 @@
             transform: translateX(-50%);
             width: 2px;
             height: 100%;
-            background: linear-gradient(180deg, var(--primary), var(--secondary));
+            background: linear-gradient(180deg, var(--primary), var(--secondary), transparent);
         }
 
         .timeline-item {
             position: relative;
-            margin-bottom: 4rem;
+            margin-bottom: 3.5rem;
             display: flex;
             align-items: center;
         }
 
-        .timeline-item:nth-child(odd) {
-            flex-direction: row;
-        }
-
-        .timeline-item:nth-child(even) {
-            flex-direction: row-reverse;
-        }
+        .timeline-item:nth-child(odd) { flex-direction: row; }
+        .timeline-item:nth-child(even) { flex-direction: row-reverse; }
 
         .timeline-content {
             width: 45%;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(0, 255, 136, 0.2);
-            border-radius: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
             padding: 2rem;
-            position: relative;
+            backdrop-filter: blur(10px);
             transition: all 0.4s;
         }
 
         .timeline-content:hover {
-            transform: scale(1.05);
             border-color: var(--primary);
-            box-shadow: 0 20px 60px rgba(0, 255, 136, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.15);
         }
 
         .timeline-dot {
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            width: 20px;
-            height: 20px;
+            width: 16px;
+            height: 16px;
             background: var(--primary);
             border-radius: 50%;
-            box-shadow: 0 0 30px var(--glow);
+            box-shadow: 0 0 15px var(--primary);
             z-index: 2;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 30px var(--glow); }
-            50% { box-shadow: 0 0 50px var(--glow); }
         }
 
         .timeline-date {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: var(--primary);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            font-weight: 600;
         }
 
         .timeline-content h3 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.3rem;
-            color: var(--light);
-            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 0.3rem;
         }
 
         .timeline-content h4 {
-            color: var(--secondary);
+            color: #b57cff;
             font-weight: 400;
+            font-size: 0.95rem;
             margin-bottom: 1rem;
         }
 
         .timeline-content ul {
             list-style: none;
             color: var(--light);
-            opacity: 0.8;
+            opacity: 0.85;
+            font-size: 0.9rem;
         }
 
         .timeline-content li {
-            padding-left: 1.5rem;
+            padding-left: 1.2rem;
             position: relative;
             margin-bottom: 0.5rem;
         }
 
         .timeline-content li::before {
-            content: '▹';
+            content: '▸';
             position: absolute;
             left: 0;
             color: var(--primary);
@@ -632,47 +547,49 @@
 
         /* Contact Section */
         .contact-content {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
-            text-align: center;
         }
 
         .contact-info {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.8rem;
         }
 
         .contact-item {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(0, 255, 136, 0.2);
-            border-radius: 20px;
-            padding: 2rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.8rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
             transition: all 0.4s;
         }
 
         .contact-item:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
             border-color: var(--primary);
-            box-shadow: 0 20px 60px rgba(0, 255, 136, 0.2);
+            box-shadow: 0 10px 25px rgba(0, 240, 255, 0.15);
         }
 
         .contact-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 2.2rem;
+            margin-bottom: 0.8rem;
         }
 
         .contact-item h3 {
             font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
             color: var(--primary);
             margin-bottom: 0.5rem;
         }
 
-        .contact-item a {
+        .contact-item a, .contact-item p {
             color: var(--light);
             text-decoration: none;
-            opacity: 0.8;
+            opacity: 0.85;
+            font-size: 0.9rem;
             transition: all 0.3s;
             word-break: break-all;
         }
@@ -684,22 +601,24 @@
 
         /* Footer */
         footer {
-            padding: 3rem 0;
+            padding: 2.5rem 0;
             text-align: center;
-            border-top: 1px solid rgba(0, 255, 136, 0.2);
-            margin-top: 8rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 6rem;
+            background: rgba(3, 4, 8, 0.9);
         }
 
         footer p {
             color: var(--light);
             opacity: 0.6;
+            font-size: 0.85rem;
         }
 
         /* Scroll Reveal Animation */
         .reveal {
             opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease-out;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         .reveal.active {
@@ -725,24 +644,17 @@
                 top: 100%;
                 left: 0;
                 right: 0;
-                background: rgba(10, 14, 26, 0.98);
+                background: rgba(7, 9, 19, 0.98);
                 flex-direction: column;
                 padding: 2rem;
                 gap: 1.5rem;
-                border-top: 1px solid rgba(0, 255, 136, 0.2);
+                border-top: 1px solid var(--border-color);
+                border-bottom: 1px solid var(--border-color);
             }
 
-            .nav-links.active {
-                display: flex;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .timeline::before {
-                left: 0;
-            }
+            .nav-links.active { display: flex; }
+            .mobile-menu-btn { display: block; }
+            .timeline::before { left: 0; }
 
             .timeline-item {
                 flex-direction: column !important;
@@ -751,7 +663,7 @@
 
             .timeline-content {
                 width: 100%;
-                margin-left: 2rem;
+                margin-left: 1.5rem;
             }
 
             .timeline-dot {
@@ -759,37 +671,20 @@
                 transform: translateX(-50%);
             }
 
-            .hero h1 {
-                font-size: 3rem;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-            }
-
-            .btn {
-                text-align: center;
-            }
+            .hero h1 { font-size: 3rem; }
+            .cta-buttons { flex-direction: column; }
+            .btn { text-align: center; }
         }
 
         @media (max-width: 640px) {
-            .skills-grid,
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            section {
-                padding: 5rem 0;
-            }
-
-            .section-header {
-                margin-bottom: 3rem;
-            }
+            .skills-grid, .projects-grid { grid-template-columns: 1fr; }
+            section { padding: 4.5rem 0; }
+            .section-header { margin-bottom: 3rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Animated Background -->
+    <!-- Animated Background Grid -->
     <div class="grid-background"></div>
     <div class="particles" id="particles"></div>
 
@@ -797,14 +692,13 @@
     <header>
         <div class="container">
             <nav>
-                <div class="logo">HAZIQ MIRZA - PORTFOLIO</div>
+                <div class="logo">HAZIQ MIRZA</div>
                 <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
                 <ul class="nav-links" id="navLinks">
                     <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
                     <li><a href="#skills">Skills</a></li>
-                    <li><a href="#projects">Projects</a></li>
                     <li><a href="#experience">Experience</a></li>
+                    <li><a href="#projects">Projects</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -815,12 +709,11 @@
     <section class="hero" id="home">
         <div class="container">
             <div class="hero-content">
-                <div class="hero-label">Network Engineer & Developer</div>
+                <div class="hero-label">IP Network Engineer & Developer</div>
                 <h1>HAZIQ MIRZA</h1>
-                <h2>Network Engineering | IoT Security | Web Development</h2>
+                <h2>IP Core Networks | Network Security | Full-Stack Web Development</h2>
                 <p class="hero-description">
-                    Computer Networks specialist with CCNP Enterprise and CCNA certifications. 
-                    Passionate about network security, IoT systems, and creating innovative web solutions.
+                    Computer Networks graduate with hands-on experience in IP core network operations at TIME dotCom Berhad. Skilled in routing, switching, capacity expansion, DDoS mitigation, and building web solutions.
                 </p>
                 <div class="cta-buttons">
                     <a href="#projects" class="btn btn-primary">View Projects</a>
@@ -834,78 +727,167 @@
     <section id="skills">
         <div class="container">
             <div class="section-header reveal">
-                <div class="section-label">Expertise</div>
+                <div class="section-label">Capabilities</div>
                 <h2 class="section-title">Technical Arsenal</h2>
-                <p class="section-subtitle">Advanced certifications and hands-on experience in networking and development</p>
+                <p class="section-subtitle">Core competencies developed through enterprise network operations and software projects</p>
             </div>
 
             <div class="skills-grid">
                 <div class="skill-card reveal">
                     <div class="skill-icon">🌐</div>
-                    <h3>Network Engineering</h3>
-                    <p>Advanced routing and switching expertise with enterprise-level certifications</p>
+                    <h3>Core Routing & Switching</h3>
+                    <p>Hands-on experience in backbone network optimization, LAG configuration, VLAN trunking, and switch stacking.</p>
                     <div class="skill-tags">
                         <span class="skill-tag">OSPF</span>
                         <span class="skill-tag">BGP</span>
                         <span class="skill-tag">EIGRP</span>
-                        <span class="skill-tag">VLAN</span>
+                        <span class="skill-tag">LAG</span>
+                        <span class="skill-tag">VLAN Trunking</span>
                         <span class="skill-tag">STP</span>
+                    </div>
+                </div>
+
+                <div class="skill-card reveal">
+                    <div class="skill-icon">📡</div>
+                    <h3>Network Monitoring & Operations</h3>
+                    <p>Utilizing enterprise network management tools for capacity tracking, auditing, and threat mitigation.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Cacti</span>
+                        <span class="skill-tag">NCE-IP</span>
+                        <span class="skill-tag">UNMS</span>
+                        <span class="skill-tag">APPM</span>
+                        <span class="skill-tag">Arbor DDoS</span>
+                        <span class="skill-tag">Proxmox</span>
                     </div>
                 </div>
 
                 <div class="skill-card reveal">
                     <div class="skill-icon">💻</div>
                     <h3>Web Development</h3>
-                    <p>Full-stack development with modern web technologies and frameworks</p>
+                    <p>Full-stack capabilities with experience building web applications and database architectures.</p>
                     <div class="skill-tags">
-                        <span class="skill-tag">HTML</span>
-                        <span class="skill-tag">CSS</span>
+                        <span class="skill-tag">HTML/CSS</span>
                         <span class="skill-tag">JavaScript</span>
                         <span class="skill-tag">PHP</span>
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">AJAX</span>
+                    </div>
+                </div>
+
+                <div class="skill-card reveal">
+                    <div class="skill-icon">🔐</div>
+                    <h3>Cybersecurity & IoT</h3>
+                    <p>Active interest in network defense, Capture The Flag (CTF) challenges, and IoT data encryption.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">DDoS Isolation</span>
+                        <span class="skill-tag">Homomorphic Encryption</span>
+                        <span class="skill-tag">CTF</span>
+                        <span class="skill-tag">Cloud Run</span>
                     </div>
                 </div>
 
                 <div class="skill-card reveal">
                     <div class="skill-icon">🗄️</div>
                     <h3>Database Management</h3>
-                    <p>Designing and implementing efficient database systems and queries</p>
+                    <p>Designing relational database schemes, performing data management, and writing SQL queries.</p>
                     <div class="skill-tags">
                         <span class="skill-tag">MySQL</span>
                         <span class="skill-tag">Database Design</span>
-                        <span class="skill-tag">SQL Queries</span>
-                    </div>
-                </div>
-
-                <div class="skill-card reveal">
-                    <div class="skill-icon">☁️</div>
-                    <h3>Cloud & IoT</h3>
-                    <p>Cloud integration and IoT fundamentals for digital transformation</p>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Google Cloud</span>
-                        <span class="skill-tag">IoT Systems</span>
-                        <span class="skill-tag">Digital Transform</span>
+                        <span class="skill-tag">Query Optimization</span>
                     </div>
                 </div>
 
                 <div class="skill-card reveal">
                     <div class="skill-icon">🔧</div>
-                    <h3>IT Support</h3>
-                    <p>Comprehensive technical support and troubleshooting capabilities</p>
+                    <h3>IT Support & Maintenance</h3>
+                    <p>Technical support, hardware troubleshooting, and system administration across organizational networks.</p>
                     <div class="skill-tags">
                         <span class="skill-tag">Troubleshooting</span>
-                        <span class="skill-tag">Tech Support</span>
-                        <span class="skill-tag">System Admin</span>
+                        <span class="skill-tag">Hardware Support</span>
+                        <span class="skill-tag">System Maintenance</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-label">Track Record</div>
+                <h2 class="section-title">Experience & Education</h2>
+                <p class="section-subtitle">Hands-on work experience, certifications, and academic background</p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">March 2026 - September 2026</div>
+                        <h3>IP Network Engineer Intern</h3>
+                        <h4>TIME dotCom Berhad</h4>
+                        <ul>
+                            <li>Configured Proxmox network switches for deploying 13 new servers across datacenter sites as part of the Proxmox 2026 Project.</li>
+                            <li>Upgraded core backbone link capacity from 600G to 700G using Link Aggregation Groups (LAG) and verified traffic stability using Cacti.</li>
+                            <li>Validated automated DDoS mitigation rules during Arbor tech refresh testing to isolate volumetric attack traffic.</li>
+                            <li>Executed switch stacking and VLAN trunking to establish secure network bring-up.</li>
+                            <li>Audited FCAPS hardware, line cards, and software management systems (NCE-IP, UNMS, APPM).</li>
+                        </ul>
                     </div>
                 </div>
 
-                <div class="skill-card reveal">
-                    <div class="skill-icon">🔐</div>
-                    <h3>Network Security</h3>
-                    <p>Implementing secure network architectures and encryption protocols</p>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Encryption</span>
-                        <span class="skill-tag">Security</span>
-                        <span class="skill-tag">Wireless Config</span>
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">March 2024 - August 2026</div>
+                        <h3>Bachelor of Computer Science (Hons.)</h3>
+                        <h4>UiTM Shah Alam | CGPA 3.63</h4>
+                        <ul>
+                            <li>Specialization in Computer Networks.</li>
+                            <li>Active member of UiTM Cyberheroes Club (Participated in CTF competitions like UniKL International Game of Hackers).</li>
+                            <li>Completed Final Year Project on secure IoT data transmission.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Cisco Certifications</div>
+                        <h3>CCNP Enterprise & CCNA</h3>
+                        <h4>Cisco Networking Academy</h4>
+                        <ul>
+                            <li>CCNP Enterprise (Advanced Routing): OSPF, EIGRP, BGP, Troubleshooting.</li>
+                            <li>CCNA (Switching, Routing, Wireless Essentials): VLAN, STP, Inter-VLAN Routing.</li>
+                            <li>Planning CCNA (200-301) exam in December 2026.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">September 2023 - February 2024</div>
+                        <h3>IT Support Intern</h3>
+                        <h4>District Education Office Hulu Selangor</h4>
+                        <ul>
+                            <li>Provided hardware, software, and network connectivity troubleshooting.</li>
+                            <li>Collaborated on upgrading and maintaining the office website.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">October 2021 - 2024</div>
+                        <h3>Diploma in Computer Science</h3>
+                        <h4>UiTM Raub | CGPA 3.51</h4>
+                        <ul>
+                            <li>Foundational studies in computer science, software development, and networking.</li>
+                            <li>Silver Award - International Virtual Students' Business Idea & Product Innovation Competition (2022).</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -918,22 +900,20 @@
             <div class="section-header reveal">
                 <div class="section-label">Portfolio</div>
                 <h2 class="section-title">Featured Projects</h2>
-                <p class="section-subtitle">Innovative solutions combining networking expertise with software development</p>
+                <p class="section-subtitle">Academic research, web platforms, and database designs</p>
             </div>
 
             <div class="projects-grid">
                 <div class="project-card reveal">
                     <div class="project-image">🔐</div>
                     <div class="project-content">
-                        <h3>IoT Data Encryption System</h3>
-                        <p>Final year project implementing lightweight homomorphic encryption for secure IoT data transmission by using Google Cloud Run Services</p>
+                        <h3>Secure IoT Data Transmission System</h3>
+                        <p>Final Year Project (Jan 2025 - Feb 2026) implementing lightweight homomorphic encryption for privacy-preserving IoT data transmission, deployed via Google Cloud Run Services.</p>
                         <div class="project-tech">
-                            <span class="tech-tag">IoT</span>
-                            <span class="tech-tag">Encryption</span>
-                            <span class="tech-tag">Security</span>
-                            <span class="tech-tag">Networks</span>
+                            <span class="tech-tag">IoT Security</span>
+                            <span class="tech-tag">Homomorphic Encryption</span>
                             <span class="tech-tag">Google Cloud Run</span>
-                            <span class="tech-tag">Google Cloud Storage</span>
+                            <span class="tech-tag">Cloud Storage</span>
                         </div>
                         <a href="https://github.com/Joshy315/fyp-he-cloud-run" target="_blank" class="project-link">View Details →</a>
                     </div>
@@ -943,10 +923,9 @@
                     <div class="project-image">👟</div>
                     <div class="project-content">
                         <h3>Sports Shoe E-Commerce Platform</h3>
-                        <p>Full-featured online shopping platform for athletic footwear with user authentication, shopping cart, wishlist, and comprehensive admin dashboard for inventory management</p>
+                        <p>Full-featured online shopping platform for athletic footwear with user authentication, shopping cart, wishlist, and an admin dashboard for inventory management.</p>
                         <div class="project-tech">
-                            <span class="tech-tag">HTML</span>
-                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">HTML/CSS</span>
                             <span class="tech-tag">JavaScript</span>
                             <span class="tech-tag">PHP</span>
                             <span class="tech-tag">MySQL</span>
@@ -960,7 +939,7 @@
                     <div class="project-image">🎬</div>
                     <div class="project-content">
                         <h3>Cinema Booking Database</h3>
-                        <p>Database-driven movie booking system with advanced query optimization and user management</p>
+                        <p>Database-driven movie booking system with query optimization and user management designed using MySQL.</p>
                         <div class="project-tech">
                             <span class="tech-tag">MySQL</span>
                             <span class="tech-tag">Database Design</span>
@@ -974,109 +953,13 @@
         </div>
     </section>
 
-    <!-- Experience Section -->
-    <section id="experience">
-        <div class="container">
-            <div class="section-header reveal">
-                <div class="section-label">Journey</div>
-                <h2 class="section-title">Experience & Certifications</h2>
-                <p class="section-subtitle">Building expertise through education, certifications, and hands-on work</p>
-            </div>
-
-            <div class="timeline">
-                <div class="timeline-item reveal">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">March 2024 - Present</div>
-                        <h3>Bachelor of Computer Science</h3>
-                        <h4>UiTM Shah Alam | CGPA 3.57</h4>
-                        <ul>
-                            <li>Specializing in Computer Networks</li>
-                            <li>Advanced networking protocols and security</li>
-                            <li>Working on IoT encryption final year project</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item reveal">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">2024</div>
-                        <h3>CCNP Enterprise Certification</h3>
-                        <h4>Cisco Certified Network Professional</h4>
-                        <ul>
-                            <li>Advanced Routing: OSPF, EIGRP, BGP</li>
-                            <li>Enterprise network troubleshooting</li>
-                            <li>Network automation and optimization</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item reveal">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">Sept 2023 - Feb 2024</div>
-                        <h3>IT Department Intern</h3>
-                        <h4>District Education Office Hulu Selangor</h4>
-                        <ul>
-                            <li>Provided comprehensive IT support services</li>
-                            <li>Technical support for school programs</li>
-                            <li>Website upgrade and maintenance</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item reveal">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">2023</div>
-                        <h3>CCNA Academy Certification</h3>
-                        <h4>Switching, Routing, and Wireless</h4>
-                        <ul>
-                            <li>VLAN, STP, Inter-VLAN Routing</li>
-                            <li>Wireless network configuration</li>
-                            <li>Network security fundamentals</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item reveal">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">Oct 2021 - 2024</div>
-                        <h3>Diploma in Computer Science</h3>
-                        <h4>UiTM Raub | CGPA 3.51</h4>
-                        <ul>
-                            <li>Foundation in programming and networks</li>
-                            <li>Web development projects</li>
-                            <li>Database management systems</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item reveal">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">July 2022</div>
-                        <h3>Silver Award</h3>
-                        <h4>International Virtual Business Innovation Competition</h4>
-                        <ul>
-                            <li>Product innovation and business planning</li>
-                            <li>International competition recognition</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Contact Section -->
     <section id="contact">
         <div class="container">
             <div class="section-header reveal">
-                <div class="section-label">Get in Touch</div>
-                <h2 class="section-title">Let's Connect</h2>
-                <p class="section-subtitle">Open to opportunities in network engineering, software development, and IT consultancy</p>
+                <div class="section-label">Get In Touch</div>
+                <h2 class="section-title">Contact Information</h2>
+                <p class="section-subtitle">Open to opportunities in IP network engineering, network operations, and software development</p>
             </div>
 
             <div class="contact-content">
@@ -1096,29 +979,13 @@
                     <div class="contact-item reveal">
                         <div class="contact-icon">💼</div>
                         <h3>LinkedIn</h3>
-                        <a href="https://www.linkedin.com/in/haziq-mirza-007a47186" target="_blank">Connect with me</a>
+                        <a href="https://www.linkedin.com/in/haziq-mirza-007a47186" target="_blank">Connect on LinkedIn</a>
                     </div>
 
                     <div class="contact-item reveal">
                         <div class="contact-icon">📍</div>
                         <h3>Location</h3>
                         <p>Bukit Beruntung, Rawang<br>Selangor, Malaysia</p>
-                    </div>
-
-                    <div class="contact-item reveal">
-                        <div class="contact-icon">👩‍🏫</div>
-                        <h3>Academic Advisor</h3>
-                        <p>Dr. Fakariah Hani binti Mohd Ali<br>
-                        <a href="mailto:fakariah_hani@uitm.edu.my">fakariah_hani@uitm.edu.my</a><br>
-                        <a href="tel:+60355211105">03-5521 1105</a></p>
-                    </div>
-
-                    <div class="contact-item reveal">
-                        <div class="contact-icon">👩‍💼</div>
-                        <h3>Industrial Training Supervisor</h3>
-                        <p>Dr. Norzilah binti Musa<br>
-                        <a href="mailto:norzilah@tmsk.uitm.edu.my">norzilah@tmsk.uitm.edu.my</a><br>
-                        <a href="tel:+60355211175">03-5521 1175</a></p>
                     </div>
                 </div>
             </div>
@@ -1128,15 +995,15 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 Haziq Mirza. Built with passion for technology and innovation.</p>
+            <p>&copy; 2026 Haziq Mirza. Built with passion for networking and modern web development.</p>
         </div>
     </footer>
 
     <script>
-        // Create floating particles
+        // Floating particles
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
-            const particleCount = 30;
+            const particleCount = 25;
 
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
@@ -1149,16 +1016,13 @@
             }
         }
 
-        // Scroll reveal animation
+        // Scroll reveal
         function reveal() {
             const reveals = document.querySelectorAll('.reveal');
-            
             reveals.forEach(element => {
                 const windowHeight = window.innerHeight;
                 const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
-                
-                if (elementTop < windowHeight - elementVisible) {
+                if (elementTop < windowHeight - 120) {
                     element.classList.add('active');
                 }
             });
@@ -1170,23 +1034,18 @@
             navLinks.classList.toggle('active');
         }
 
-        // Smooth scrolling
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    // Close mobile menu if open
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     document.getElementById('navLinks').classList.remove('active');
                 }
             });
         });
 
-        // Initialize
         window.addEventListener('scroll', reveal);
         window.addEventListener('load', () => {
             createParticles();
