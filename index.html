@@ -11,14 +11,15 @@
         :root {
             --primary: #00f0ff;
             --secondary: #7000ff;
-            --accent: #ff0055;
+            --accent: #ff007f;
+            --time-magenta: #e6007e;
             --dark: #070913;
             --darker: #030408;
-            --card-bg: rgba(15, 23, 42, 0.6);
+            --card-bg: rgba(13, 19, 36, 0.65);
+            --card-border: rgba(0, 240, 255, 0.2);
             --light: #f1f5f9;
             --glow-primary: rgba(0, 240, 255, 0.4);
             --glow-secondary: rgba(112, 0, 255, 0.4);
-            --border-color: rgba(0, 240, 255, 0.25);
         }
 
         * {
@@ -35,54 +36,58 @@
             line-height: 1.6;
         }
 
-        /* Animated Background Grid */
-        .grid-background {
+        /* Interactive Canvas Background */
+        #bgCanvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: 0;
-            opacity: 0.12;
-            background-image: 
-                linear-gradient(var(--primary) 1px, transparent 1px),
-                linear-gradient(90deg, var(--primary) 1px, transparent 1px);
-            background-size: 40px 40px;
-            animation: gridMove 25s linear infinite;
-        }
-
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(40px, 40px); }
-        }
-
-        /* Floating Particles */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
             pointer-events: none;
         }
 
-        .particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: var(--primary);
+        /* Gradient Glow Orbs */
+        .orb {
+            position: fixed;
             border-radius: 50%;
-            animation: float 15s infinite ease-in-out;
-            opacity: 0.6;
-            box-shadow: 0 0 8px var(--primary);
+            filter: blur(120px);
+            opacity: 0.22;
+            z-index: 0;
+            pointer-events: none;
+            animation: orbFloat 20s infinite alternate ease-in-out;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0) translateX(0); }
-            25% { transform: translateY(-100px) translateX(50px); }
-            50% { transform: translateY(-200px) translateX(-50px); }
-            75% { transform: translateY(-100px) translateX(100px); }
+        .orb-1 {
+            top: -10%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: var(--secondary);
+        }
+
+        .orb-2 {
+            bottom: -10%;
+            right: -10%;
+            width: 45vw;
+            height: 45vw;
+            background: var(--primary);
+            animation-delay: -10s;
+        }
+
+        .orb-3 {
+            top: 40%;
+            left: 30%;
+            width: 35vw;
+            height: 35vw;
+            background: var(--time-magenta);
+            animation-delay: -5s;
+            opacity: 0.12;
+        }
+
+        @keyframes orbFloat {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(60px, 80px) scale(1.15); }
         }
 
         /* Main Container */
@@ -103,7 +108,7 @@
             -webkit-backdrop-filter: blur(16px);
             background: rgba(3, 4, 8, 0.75);
             z-index: 100;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--card-border);
             animation: slideDown 0.8s ease-out;
         }
 
@@ -189,18 +194,19 @@
             letter-spacing: 4px;
             margin-bottom: 1.2rem;
             display: inline-block;
-            padding: 0.3rem 0.8rem;
+            padding: 0.35rem 0.9rem;
             background: rgba(0, 240, 255, 0.08);
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--card-border);
             border-radius: 4px;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
         }
 
         .hero h1 {
             font-family: 'Orbitron', sans-serif;
-            font-size: clamp(3rem, 7vw, 6rem);
+            font-size: clamp(3rem, 7vw, 5.8rem);
             font-weight: 900;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, #ffffff, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, #ffffff 20%, var(--primary) 60%, var(--secondary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             line-height: 1.1;
@@ -234,7 +240,7 @@
             font-weight: 600;
             text-decoration: none;
             border-radius: 6px;
-            transition: all 0.3s;
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
             text-transform: uppercase;
             letter-spacing: 1.5px;
             position: relative;
@@ -251,20 +257,21 @@
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 30px var(--glow-primary);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 0 35px var(--glow-primary);
         }
 
         .btn-secondary {
-            background: transparent;
+            background: rgba(13, 19, 36, 0.6);
             color: var(--primary);
             border: 1px solid var(--primary);
+            backdrop-filter: blur(10px);
         }
 
         .btn-secondary:hover {
-            background: rgba(0, 240, 255, 0.1);
-            transform: translateY(-3px);
-            box-shadow: 0 0 20px var(--glow-primary);
+            background: rgba(0, 240, 255, 0.12);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 0 25px var(--glow-primary);
         }
 
         /* Section Styling */
@@ -304,6 +311,39 @@
             margin: 0 auto;
         }
 
+        /* Glass Cards with Animated Glow & Tilt Effect */
+        .glass-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.12), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .glass-card:hover::before {
+            left: 100%;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px) scale(1.015);
+            border-color: var(--primary);
+            box-shadow: 0 15px 35px rgba(0, 240, 255, 0.2), 0 0 15px rgba(112, 0, 255, 0.15);
+        }
+
         /* Skills Grid */
         .skills-grid {
             display: grid;
@@ -312,18 +352,7 @@
         }
 
         .skill-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
             padding: 2.2rem;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            backdrop-filter: blur(10px);
-        }
-
-        .skill-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--primary);
-            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.15);
         }
 
         .skill-icon {
@@ -358,6 +387,12 @@
             border-radius: 4px;
             font-size: 0.8rem;
             color: var(--primary);
+            transition: all 0.3s;
+        }
+
+        .glass-card:hover .skill-tag {
+            border-color: var(--primary);
+            background: rgba(0, 240, 255, 0.15);
         }
 
         /* Projects Grid */
@@ -368,31 +403,46 @@
         }
 
         .project-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             display: flex;
             flex-direction: column;
-            backdrop-filter: blur(10px);
         }
 
-        .project-card:hover {
-            transform: translateY(-8px);
+        .project-card.featured-project {
+            border-color: var(--time-magenta);
+            box-shadow: 0 0 20px rgba(230, 0, 126, 0.2);
+        }
+
+        .project-card.featured-project:hover {
             border-color: var(--primary);
-            box-shadow: 0 15px 35px rgba(0, 240, 255, 0.2);
+            box-shadow: 0 15px 40px rgba(0, 240, 255, 0.25), 0 0 25px rgba(230, 0, 126, 0.3);
+        }
+
+        .project-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 0.25rem 0.75rem;
+            background: linear-gradient(135deg, var(--time-magenta), var(--secondary));
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 600;
+            border-radius: 20px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 0 12px rgba(230, 0, 126, 0.4);
+            z-index: 3;
         }
 
         .project-image {
             width: 100%;
-            height: 180px;
+            height: 190px;
             background: linear-gradient(135deg, rgba(0, 240, 255, 0.15), rgba(112, 0, 255, 0.15));
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 3.5rem;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--card-border);
+            position: relative;
         }
 
         .project-content {
@@ -412,9 +462,10 @@
         .project-card p {
             color: var(--light);
             opacity: 0.8;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             margin-bottom: 1.5rem;
             flex-grow: 1;
+            line-height: 1.6;
         }
 
         .project-tech {
@@ -477,17 +528,7 @@
 
         .timeline-content {
             width: 45%;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
             padding: 2rem;
-            backdrop-filter: blur(10px);
-            transition: all 0.4s;
-        }
-
-        .timeline-content:hover {
-            border-color: var(--primary);
-            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.15);
         }
 
         .timeline-dot {
@@ -558,19 +599,8 @@
         }
 
         .contact-item {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
             padding: 1.8rem;
             text-align: center;
-            backdrop-filter: blur(10px);
-            transition: all 0.4s;
-        }
-
-        .contact-item:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: 0 10px 25px rgba(0, 240, 255, 0.15);
         }
 
         .contact-icon {
@@ -603,9 +633,11 @@
         footer {
             padding: 2.5rem 0;
             text-align: center;
-            border-top: 1px solid var(--border-color);
+            border-top: 1px solid var(--card-border);
             margin-top: 6rem;
             background: rgba(3, 4, 8, 0.9);
+            position: relative;
+            z-index: 2;
         }
 
         footer p {
@@ -648,8 +680,8 @@
                 flex-direction: column;
                 padding: 2rem;
                 gap: 1.5rem;
-                border-top: 1px solid var(--border-color);
-                border-bottom: 1px solid var(--border-color);
+                border-top: 1px solid var(--card-border);
+                border-bottom: 1px solid var(--card-border);
             }
 
             .nav-links.active { display: flex; }
@@ -684,11 +716,13 @@
     </style>
 </head>
 <body>
-    <!-- Animated Background Grid -->
-    <div class="grid-background"></div>
-    <div class="particles" id="particles"></div>
+    <!-- Interactive Background Canvas & Glowing Orbs -->
+    <canvas id="bgCanvas"></canvas>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
 
-    <!-- Header -->
+    <!-- Header Navigation -->
     <header>
         <div class="container">
             <nav>
@@ -711,9 +745,9 @@
             <div class="hero-content">
                 <div class="hero-label">IP Network Engineer & Developer</div>
                 <h1>HAZIQ MIRZA</h1>
-                <h2>IP Core Networks | Network Security | Full-Stack Web Development</h2>
+                <h2>IP Core Networks | Network Security | Full-Stack Development</h2>
                 <p class="hero-description">
-                    Computer Networks graduate with hands-on experience in IP core network operations at TIME dotCom Berhad. Skilled in routing, switching, capacity expansion, DDoS mitigation, and building web solutions.
+                    Computer Networks graduate with hands-on experience in IP core network operations at TIME dotCom Berhad[cite: 1]. Experienced in Proxmox server deployment[cite: 1], 700G backbone link capacity expansion[cite: 1], Arbor DDoS mitigation[cite: 1], and building cloud & web solutions[cite: 1, 2].
                 </p>
                 <div class="cta-buttons">
                     <a href="#projects" class="btn btn-primary">View Projects</a>
@@ -729,14 +763,14 @@
             <div class="section-header reveal">
                 <div class="section-label">Capabilities</div>
                 <h2 class="section-title">Technical Arsenal</h2>
-                <p class="section-subtitle">Core competencies developed through enterprise network operations and software projects</p>
+                <p class="section-subtitle">Core competencies developed through enterprise network operations and software engineering</p>
             </div>
 
             <div class="skills-grid">
-                <div class="skill-card reveal">
+                <div class="glass-card skill-card reveal">
                     <div class="skill-icon">🌐</div>
                     <h3>Core Routing & Switching</h3>
-                    <p>Hands-on experience in backbone network optimization, LAG configuration, VLAN trunking, and switch stacking.</p>
+                    <p>Hands-on experience in backbone network optimization, LAG link aggregation[cite: 1], VLAN trunking[cite: 1], and switch stacking[cite: 1].</p>
                     <div class="skill-tags">
                         <span class="skill-tag">OSPF</span>
                         <span class="skill-tag">BGP</span>
@@ -747,24 +781,24 @@
                     </div>
                 </div>
 
-                <div class="skill-card reveal">
+                <div class="glass-card skill-card reveal">
                     <div class="skill-icon">📡</div>
-                    <h3>Network Monitoring & Operations</h3>
-                    <p>Utilizing enterprise network management tools for capacity tracking, auditing, and threat mitigation.</p>
+                    <h3>Network Operations & Auditing</h3>
+                    <p>Utilizing enterprise management platforms for capacity tracking[cite: 1], FCAPS hardware auditing[cite: 1], and Proxmox deployments[cite: 1].</p>
                     <div class="skill-tags">
+                        <span class="skill-tag">Proxmox VE</span>
                         <span class="skill-tag">Cacti</span>
                         <span class="skill-tag">NCE-IP</span>
                         <span class="skill-tag">UNMS</span>
                         <span class="skill-tag">APPM</span>
                         <span class="skill-tag">Arbor DDoS</span>
-                        <span class="skill-tag">Proxmox</span>
                     </div>
                 </div>
 
-                <div class="skill-card reveal">
+                <div class="glass-card skill-card reveal">
                     <div class="skill-icon">💻</div>
                     <h3>Web Development</h3>
-                    <p>Full-stack capabilities with experience building web applications and database architectures.</p>
+                    <p>Full-stack web application development with responsive interfaces and database backends[cite: 1, 2].</p>
                     <div class="skill-tags">
                         <span class="skill-tag">HTML/CSS</span>
                         <span class="skill-tag">JavaScript</span>
@@ -774,37 +808,37 @@
                     </div>
                 </div>
 
-                <div class="skill-card reveal">
+                <div class="glass-card skill-card reveal">
                     <div class="skill-icon">🔐</div>
-                    <h3>Cybersecurity & IoT</h3>
-                    <p>Active interest in network defense, Capture The Flag (CTF) challenges, and IoT data encryption.</p>
+                    <h3>Cybersecurity & Cloud</h3>
+                    <p>DDoS traffic isolation testing[cite: 1], Capture The Flag (CTF) challenges[cite: 2], and homomorphic encryption on Cloud Run[cite: 2].</p>
                     <div class="skill-tags">
                         <span class="skill-tag">DDoS Isolation</span>
                         <span class="skill-tag">Homomorphic Encryption</span>
+                        <span class="skill-tag">Google Cloud Run</span>
                         <span class="skill-tag">CTF</span>
-                        <span class="skill-tag">Cloud Run</span>
                     </div>
                 </div>
 
-                <div class="skill-card reveal">
+                <div class="glass-card skill-card reveal">
                     <div class="skill-icon">🗄️</div>
-                    <h3>Database Management</h3>
-                    <p>Designing relational database schemes, performing data management, and writing SQL queries.</p>
+                    <h3>Database Systems</h3>
+                    <p>Designing normalized database architectures, managing data flows, and optimizing complex SQL queries[cite: 2].</p>
                     <div class="skill-tags">
                         <span class="skill-tag">MySQL</span>
-                        <span class="skill-tag">Database Design</span>
+                        <span class="skill-tag">Database Architecture</span>
                         <span class="skill-tag">Query Optimization</span>
                     </div>
                 </div>
 
-                <div class="skill-card reveal">
+                <div class="glass-card skill-card reveal">
                     <div class="skill-icon">🔧</div>
                     <h3>IT Support & Maintenance</h3>
-                    <p>Technical support, hardware troubleshooting, and system administration across organizational networks.</p>
+                    <p>Technical troubleshooting, hardware diagnostics, and infrastructure maintenance across organizational environments[cite: 1].</p>
                     <div class="skill-tags">
-                        <span class="skill-tag">Troubleshooting</span>
-                        <span class="skill-tag">Hardware Support</span>
-                        <span class="skill-tag">System Maintenance</span>
+                        <span class="skill-tag">Network Troubleshooting</span>
+                        <span class="skill-tag">Technical Support</span>
+                        <span class="skill-tag">System Administration</span>
                     </div>
                 </div>
             </div>
@@ -817,76 +851,76 @@
             <div class="section-header reveal">
                 <div class="section-label">Track Record</div>
                 <h2 class="section-title">Experience & Education</h2>
-                <p class="section-subtitle">Hands-on work experience, certifications, and academic background</p>
+                <p class="section-subtitle">Hands-on core network operations, professional certifications, and academic achievements</p>
             </div>
 
             <div class="timeline">
                 <div class="timeline-item reveal">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content">
+                    <div class="glass-card timeline-content">
                         <div class="timeline-date">March 2026 - September 2026</div>
                         <h3>IP Network Engineer Intern</h3>
                         <h4>TIME dotCom Berhad</h4>
                         <ul>
-                            <li>Configured Proxmox network switches for deploying 13 new servers across datacenter sites as part of the Proxmox 2026 Project.</li>
-                            <li>Upgraded core backbone link capacity from 600G to 700G using Link Aggregation Groups (LAG) and verified traffic stability using Cacti.</li>
-                            <li>Validated automated DDoS mitigation rules during Arbor tech refresh testing to isolate volumetric attack traffic.</li>
-                            <li>Executed switch stacking and VLAN trunking to establish secure network bring-up.</li>
-                            <li>Audited FCAPS hardware, line cards, and software management systems (NCE-IP, UNMS, APPM).</li>
+                            <li>Configured Proxmox network switches for deploying 13 new servers across datacenter sites as part of the Proxmox 2026 Project[cite: 1].</li>
+                            <li>Upgraded core backbone link capacity from 600G to 700G using Link Aggregation Groups (LAG) and verified traffic stability via Cacti[cite: 1].</li>
+                            <li>Validated automated DDoS mitigation rules during Arbor tech refresh testing to isolate volumetric attack traffic[cite: 1].</li>
+                            <li>Executed switch stacking and VLAN trunking to establish secure network bring-up[cite: 1].</li>
+                            <li>Audited FCAPS hardware, line cards, and software management systems (NCE-IP, UNMS, APPM)[cite: 1].</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="timeline-item reveal">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content">
+                    <div class="glass-card timeline-content">
                         <div class="timeline-date">March 2024 - August 2026</div>
                         <h3>Bachelor of Computer Science (Hons.)</h3>
                         <h4>UiTM Shah Alam | CGPA 3.63</h4>
                         <ul>
-                            <li>Specialization in Computer Networks.</li>
-                            <li>Active member of UiTM Cyberheroes Club (Participated in CTF competitions like UniKL International Game of Hackers).</li>
-                            <li>Completed Final Year Project on secure IoT data transmission.</li>
+                            <li>Specialized in Computer Networks[cite: 1].</li>
+                            <li>Active member of UiTM Cyberheroes Club (Participated in CTF competitions including UniKL International Game of Hackers)[cite: 2].</li>
+                            <li>Completed Final Year Project on secure IoT data transmission[cite: 2].</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="timeline-item reveal">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content">
+                    <div class="glass-card timeline-content">
                         <div class="timeline-date">Cisco Certifications</div>
                         <h3>CCNP Enterprise & CCNA</h3>
                         <h4>Cisco Networking Academy</h4>
                         <ul>
-                            <li>CCNP Enterprise (Advanced Routing): OSPF, EIGRP, BGP, Troubleshooting.</li>
-                            <li>CCNA (Switching, Routing, Wireless Essentials): VLAN, STP, Inter-VLAN Routing.</li>
-                            <li>Planning CCNA (200-301) exam in December 2026.</li>
+                            <li>CCNP Enterprise (Advanced Routing): OSPF, EIGRP, BGP, Troubleshooting[cite: 2].</li>
+                            <li>CCNA (Switching, Routing, Wireless Essentials): VLAN, STP, Inter-VLAN Routing[cite: 2].</li>
+                            <li>Preparing for official CCNA (200-301) exam in December 2026[cite: 1].</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="timeline-item reveal">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content">
+                    <div class="glass-card timeline-content">
                         <div class="timeline-date">September 2023 - February 2024</div>
                         <h3>IT Support Intern</h3>
                         <h4>District Education Office Hulu Selangor</h4>
                         <ul>
-                            <li>Provided hardware, software, and network connectivity troubleshooting.</li>
-                            <li>Collaborated on upgrading and maintaining the office website.</li>
+                            <li>Provided technical support and troubleshooting for office hardware, software, and connectivity issues[cite: 1].</li>
+                            <li>Collaborated with co-interns to upgrade and maintain the official office website[cite: 1].</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="timeline-item reveal">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-content">
+                    <div class="glass-card timeline-content">
                         <div class="timeline-date">October 2021 - 2024</div>
                         <h3>Diploma in Computer Science</h3>
                         <h4>UiTM Raub | CGPA 3.51</h4>
                         <ul>
-                            <li>Foundational studies in computer science, software development, and networking.</li>
-                            <li>Silver Award - International Virtual Students' Business Idea & Product Innovation Competition (2022).</li>
+                            <li>Foundational studies in programming, algorithms, database management, and computer networking[cite: 1, 2].</li>
+                            <li>Silver Award - International Virtual Students' Business Idea & Product Innovation Competition (2022)[cite: 2].</li>
                         </ul>
                     </div>
                 </div>
@@ -900,30 +934,51 @@
             <div class="section-header reveal">
                 <div class="section-label">Portfolio</div>
                 <h2 class="section-title">Featured Projects</h2>
-                <p class="section-subtitle">Academic research, web platforms, and database designs</p>
+                <p class="section-subtitle">Real-world enterprise network operations, academic research, and web software</p>
             </div>
 
             <div class="projects-grid">
-                <div class="project-card reveal">
+                <!-- TIME dotCom Proxmox Project -->
+                <div class="glass-card project-card featured-project reveal">
+                    <div class="project-badge">Enterprise Project</div>
+                    <div class="project-image">🏢</div>
+                    <div class="project-content">
+                        <h3>Proxmox 2026 Datacenter Expansion</h3>
+                        <p>Configured Proxmox network switches for deploying 13 servers across multiple datacenter sites[cite: 1]. Executed switch stacking, VLAN trunking for management vs replication traffic, and core backbone capacity expansion from 600G to 700G via LAG[cite: 1].</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Proxmox VE</span>
+                            <span class="tech-tag">600G-700G LAG</span>
+                            <span class="tech-tag">Switch Stacking</span>
+                            <span class="tech-tag">VLAN Trunking</span>
+                            <span class="tech-tag">Arbor DDoS</span>
+                            <span class="tech-tag">Cacti / NCE-IP</span>
+                        </div>
+                        <a href="#experience" class="project-link">View Internship Details →</a>
+                    </div>
+                </div>
+
+                <!-- Final Year Project -->
+                <div class="glass-card project-card reveal">
                     <div class="project-image">🔐</div>
                     <div class="project-content">
-                        <h3>Secure IoT Data Transmission System</h3>
-                        <p>Final Year Project (Jan 2025 - Feb 2026) implementing lightweight homomorphic encryption for privacy-preserving IoT data transmission, deployed via Google Cloud Run Services.</p>
+                        <h3>Secure IoT Homomorphic Encryption</h3>
+                        <p>Final Year Project (Jan 2025 - Feb 2026) implementing lightweight homomorphic encryption for privacy-preserving IoT data transmission, deployed using Google Cloud Run Services and Cloud Storage[cite: 2].</p>
                         <div class="project-tech">
                             <span class="tech-tag">IoT Security</span>
                             <span class="tech-tag">Homomorphic Encryption</span>
                             <span class="tech-tag">Google Cloud Run</span>
                             <span class="tech-tag">Cloud Storage</span>
                         </div>
-                        <a href="https://github.com/Joshy315/fyp-he-cloud-run" target="_blank" class="project-link">View Details →</a>
+                        <a href="https://github.com/Joshy315/fyp-he-cloud-run" target="_blank" class="project-link">View Repository →</a>
                     </div>
                 </div>
 
-                <div class="project-card reveal">
+                <!-- Sports Shoe Platform -->
+                <div class="glass-card project-card reveal">
                     <div class="project-image">👟</div>
                     <div class="project-content">
                         <h3>Sports Shoe E-Commerce Platform</h3>
-                        <p>Full-featured online shopping platform for athletic footwear with user authentication, shopping cart, wishlist, and an admin dashboard for inventory management.</p>
+                        <p>Full-featured online shopping platform for athletic footwear with user authentication, shopping cart, wishlist, and an administrative inventory dashboard[cite: 2].</p>
                         <div class="project-tech">
                             <span class="tech-tag">HTML/CSS</span>
                             <span class="tech-tag">JavaScript</span>
@@ -931,22 +986,23 @@
                             <span class="tech-tag">MySQL</span>
                             <span class="tech-tag">AJAX</span>
                         </div>
-                        <a href="https://github.com/Joshy315/sports-shoe-ecommerce" target="_blank" class="project-link">View Details →</a>
+                        <a href="https://github.com/Joshy315/sports-shoe-ecommerce" target="_blank" class="project-link">View Repository →</a>
                     </div>
                 </div>
 
-                <div class="project-card reveal">
+                <!-- Cinema Booking Database -->
+                <div class="glass-card project-card reveal">
                     <div class="project-image">🎬</div>
                     <div class="project-content">
-                        <h3>Cinema Booking Database</h3>
-                        <p>Database-driven movie booking system with query optimization and user management designed using MySQL.</p>
+                        <h3>Cinema Ticket Booking System</h3>
+                        <p>Database-driven movie ticket booking system with advanced query optimization, user management, and automated seat allocation designed in MySQL[cite: 2].</p>
                         <div class="project-tech">
                             <span class="tech-tag">MySQL</span>
-                            <span class="tech-tag">Database Design</span>
-                            <span class="tech-tag">SQL</span>
+                            <span class="tech-tag">Database Architecture</span>
+                            <span class="tech-tag">SQL Optimization</span>
                             <span class="tech-tag">PHP</span>
                         </div>
-                        <a href="https://github.com/Joshy315/cinema-booking-system" target="_blank" class="project-link">View Details →</a>
+                        <a href="https://github.com/Joshy315/cinema-booking-system" target="_blank" class="project-link">View Repository →</a>
                     </div>
                 </div>
             </div>
@@ -959,30 +1015,30 @@
             <div class="section-header reveal">
                 <div class="section-label">Get In Touch</div>
                 <h2 class="section-title">Contact Information</h2>
-                <p class="section-subtitle">Open to opportunities in IP network engineering, network operations, and software development</p>
+                <p class="section-subtitle">Open to opportunities in IP core network engineering, TAC operations, and software development</p>
             </div>
 
             <div class="contact-content">
                 <div class="contact-info">
-                    <div class="contact-item reveal">
+                    <div class="glass-card contact-item reveal">
                         <div class="contact-icon">📧</div>
                         <h3>Email</h3>
                         <a href="mailto:Haziqsabri8@gmail.com">Haziqsabri8@gmail.com</a>
                     </div>
 
-                    <div class="contact-item reveal">
+                    <div class="glass-card contact-item reveal">
                         <div class="contact-icon">📱</div>
                         <h3>Phone</h3>
                         <a href="tel:+601156642943">(+60) 11-5664-2943</a>
                     </div>
 
-                    <div class="contact-item reveal">
+                    <div class="glass-card contact-item reveal">
                         <div class="contact-icon">💼</div>
                         <h3>LinkedIn</h3>
                         <a href="https://www.linkedin.com/in/haziq-mirza-007a47186" target="_blank">Connect on LinkedIn</a>
                     </div>
 
-                    <div class="contact-item reveal">
+                    <div class="glass-card contact-item reveal">
                         <div class="contact-icon">📍</div>
                         <h3>Location</h3>
                         <p>Bukit Beruntung, Rawang<br>Selangor, Malaysia</p>
@@ -995,28 +1051,93 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2026 Haziq Mirza. Built with passion for networking and modern web development.</p>
+            <p>&copy; 2026 Haziq Mirza. Built with passion for IP networks, security, and modern web engineering.</p>
         </div>
     </footer>
 
     <script>
-        // Floating particles
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 25;
+        // Interactive Canvas Animation (Interactive Connected Nodes)
+        const canvas = document.getElementById('bgCanvas');
+        const ctx = canvas.getContext('2d');
 
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 15 + 's';
-                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-                particlesContainer.appendChild(particle);
+        let width, height;
+        let particles = [];
+        let mouse = { x: null, y: null, radius: 180 };
+
+        function initCanvas() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            particles = [];
+
+            const count = Math.floor((width * height) / 14000);
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    vx: (Math.random() - 0.5) * 0.8,
+                    vy: (Math.random() - 0.5) * 0.8,
+                    size: Math.random() * 2 + 1,
+                    baseAlpha: Math.random() * 0.5 + 0.2
+                });
             }
         }
 
-        // Scroll reveal
+        function animateCanvas() {
+            ctx.clearRect(0, 0, width, height);
+
+            for (let i = 0; i < particles.length; i++) {
+                let p = particles[i];
+
+                p.x += p.vx;
+                p.y += p.vy;
+
+                if (p.x < 0 || p.x > width) p.vx *= -1;
+                if (p.y < 0 || p.y > height) p.vy *= -1;
+
+                // Mouse interactivity
+                let dx = mouse.x - p.x;
+                let dy = mouse.y - p.y;
+                let dist = Math.sqrt(dx * dx + dy * dy);
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = dist < mouse.radius ? '#00f0ff' : 'rgba(0, 240, 255, ' + p.baseAlpha + ')';
+                ctx.fill();
+
+                // Connect nearby particles
+                for (let j = i + 1; j < particles.length; j++) {
+                    let p2 = particles[j];
+                    let dx2 = p.x - p2.x;
+                    let dy2 = p.y - p2.y;
+                    let dist2 = Math.sqrt(dx2 * dx2 + dy2 * dy2);
+
+                    if (dist2 < 120) {
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.strokeStyle = `rgba(0, 240, 255, ${0.18 * (1 - dist2 / 120)})`;
+                        ctx.lineWidth = 0.6;
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            requestAnimationFrame(animateCanvas);
+        }
+
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+
+        window.addEventListener('mouseleave', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        window.addEventListener('resize', initCanvas);
+
+        // Scroll Reveal
         function reveal() {
             const reveals = document.querySelectorAll('.reveal');
             reveals.forEach(element => {
@@ -1028,13 +1149,13 @@
             });
         }
 
-        // Mobile menu toggle
+        // Mobile Menu Toggle
         function toggleMenu() {
             const navLinks = document.getElementById('navLinks');
             navLinks.classList.toggle('active');
         }
 
-        // Smooth scroll
+        // Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1048,7 +1169,8 @@
 
         window.addEventListener('scroll', reveal);
         window.addEventListener('load', () => {
-            createParticles();
+            initCanvas();
+            animateCanvas();
             reveal();
         });
     </script>
